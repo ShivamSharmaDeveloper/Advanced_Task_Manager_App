@@ -16,6 +16,7 @@
   --error-color: #dc3545;
   --success-color: #28a745;
   --warning-color: #ffc107;
+  --shadow-main: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   --shadow-light: 0 2px 4px rgba(0, 0, 0, 0.1);
   --shadow-medium: 0 4px 8px rgba(0, 0, 0, 0.15);
   --shadow-heavy: 0 8px 16px rgba(0, 0, 0, 0.2);
@@ -29,7 +30,7 @@
 [data-theme="dark"] {
   /* Dark theme colors */
   --bg-primary: #1a1a1a;
-  --bg-secondary: #2d2d2d;
+  --bg-secondary: #1a1a1a;
   --bg-tertiary: #3a3a3a;
   --text-primary: #ffffff;
   --text-secondary: #b0b0b0;
@@ -43,6 +44,7 @@
   --error-color: #dc3545;
   --success-color: #198754;
   --warning-color: #ffc107;
+  --shadow-main: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
   --shadow-light: 0 2px 4px rgba(0, 0, 0, 0.3);
   --shadow-medium: 0 4px 8px rgba(0, 0, 0, 0.4);
   --shadow-heavy: 0 8px 16px rgba(0, 0, 0, 0.5);
@@ -76,8 +78,11 @@ body {
 .app {
   min-height: 100vh;
   display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
   flex-direction: column;
-  background-color: var(--bg-primary);
+  background-color: var(--bg-secondary);
   color: var(--text-primary);
   transition: all var(--transition-medium);
 }
@@ -90,6 +95,8 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  box-shadow: var(--shadow-main);
+  margin: 16px 0;
 }
 
 /* Header styles */
