@@ -1,0 +1,204 @@
+.task-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  margin-bottom: 8px;
+  background-color: var(--task-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  animation: slideInFromTop 0.3s ease-out;
+}
+
+.task-item:hover {
+  border-color: var(--button-bg);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
+}
+
+.task-item.completed {
+  opacity: 0.6;
+}
+
+.task-item.dragging {
+  opacity: 0.8;
+  transform: rotate(2deg);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.task-content {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  gap: 12px;
+  min-width: 0;
+}
+
+.checkbox {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--button-bg);
+  border-radius: 4px;
+  background-color: transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.checkbox:hover {
+  background-color: rgba(0, 123, 255, 0.1);
+}
+
+.checkbox.checked {
+  background-color: var(--button-bg);
+}
+
+.checkmark {
+  width: 12px;
+  height: 12px;
+  background-color: transparent;
+  border-left: 2px solid white;
+  border-bottom: 2px solid white;
+  transform: rotate(-45deg);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.checkbox.checked .checkmark {
+  opacity: 1;
+}
+
+.task-title {
+  flex: 1;
+  font-size: 16px;
+  color: var(--text-primary);
+  word-break: break-word;
+  line-height: 1.4;
+}
+
+.task-item.completed .task-title {
+  text-decoration: line-through;
+  color: var(--text-secondary);
+}
+
+.task-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.drag-handle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: grab;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  padding: 4px;
+}
+
+.drag-handle:hover {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+.drag-handle:active {
+  cursor: grabbing;
+}
+
+.drag-handle svg {
+  width: 16px;
+  height: 16px;
+}
+
+.delete-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  padding: 4px;
+}
+
+.delete-button:hover {
+  background-color: #dc3545;
+  color: white;
+}
+
+.delete-button svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .task-item {
+    padding: 12px;
+  }
+
+  .task-title {
+    font-size: 16px;
+  }
+
+  .drag-handle,
+  .delete-button {
+    width: 36px;
+    height: 36px;
+  }
+
+  .drag-handle svg,
+  .delete-button svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .task-item {
+    padding: 16px 12px;
+  }
+
+  .task-content {
+    gap: 10px;
+  }
+
+  .task-actions {
+    gap: 4px;
+  }
+}
+
+/* Animations */
+@keyframes slideInFromTop {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Accessibility */
+.task-item:focus-within {
+  outline: 2px solid var(--button-bg);
+  outline-offset: 2px;
+}

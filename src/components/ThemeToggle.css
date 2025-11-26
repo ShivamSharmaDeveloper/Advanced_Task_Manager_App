@@ -1,0 +1,191 @@
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  border: 2px solid var(--border-color);
+  border-radius: 50px;
+  background-color: var(--task-bg);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 14px;
+  font-weight: 500;
+  min-height: 44px; /* Touch-friendly size */
+  white-space: nowrap;
+}
+
+.theme-toggle:hover {
+  border-color: var(--button-bg);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.theme-toggle:focus {
+  outline: none;
+  border-color: var(--button-bg);
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+.theme-toggle:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.theme-toggle-track {
+  position: relative;
+  width: 44px;
+  height: 24px;
+  background-color: var(--bg-secondary);
+  border-radius: 12px;
+  transition: background-color 0.3s ease;
+  border: 1px solid var(--border-color);
+}
+
+.theme-toggle-thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 18px;
+  height: 18px;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Dark mode positioning */
+.theme-toggle[data-theme="dark"] .theme-toggle-thumb {
+  transform: translateX(20px);
+}
+
+/* Theme-specific track colors */
+.theme-toggle[data-theme="light"] .theme-toggle-track {
+  background-color: #f8f9fa;
+}
+
+.theme-toggle[data-theme="dark"] .theme-toggle-track {
+  background-color: #495057;
+}
+
+/* Icon styles */
+.sun-icon,
+.moon-icon {
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+}
+
+.theme-toggle[data-theme="light"] .sun-icon {
+  color: #f39c12;
+}
+
+.theme-toggle[data-theme="dark"] .moon-icon {
+  color: #f1c40f;
+}
+
+.theme-toggle-label {
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .theme-toggle {
+    padding: 10px 14px;
+    font-size: 13px;
+    min-height: 48px; /* Larger touch target on mobile */
+  }
+
+  .theme-toggle-track {
+    width: 48px;
+    height: 26px;
+  }
+
+  .theme-toggle-thumb {
+    width: 20px;
+    height: 20px;
+    top: 3px;
+    left: 3px;
+  }
+
+  .theme-toggle[data-theme="dark"] .theme-toggle-thumb {
+    transform: translateX(22px);
+  }
+
+  .sun-icon,
+  .moon-icon {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .theme-toggle {
+    gap: 10px;
+    padding: 12px;
+    min-height: 52px;
+  }
+
+  .theme-toggle-label {
+    font-size: 12px;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .theme-toggle {
+    border-width: 3px;
+  }
+
+  .theme-toggle-track {
+    border-width: 2px;
+  }
+
+  .theme-toggle-thumb {
+    border: 2px solid currentColor;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .theme-toggle,
+  .theme-toggle-track,
+  .theme-toggle-thumb,
+  .sun-icon,
+  .moon-icon,
+  .theme-toggle-label {
+    transition: none;
+  }
+
+  .theme-toggle:hover {
+    transform: none;
+  }
+}
+
+/* Focus visible for better accessibility */
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--button-bg);
+  outline-offset: 2px;
+}
+
+/* Animation for theme switching */
+@keyframes themeSwitch {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(0.8);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+.theme-toggle:active .sun-icon,
+.theme-toggle:active .moon-icon {
+  animation: themeSwitch 0.3s ease;
+}

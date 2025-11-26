@@ -1,0 +1,204 @@
+.filter-bar {
+  margin-bottom: 24px;
+  animation: slideInFromTop 0.3s ease-out 0.1s both;
+}
+
+.filter-container {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.filter-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  background-color: var(--task-bg);
+  color: var(--text-primary);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  min-width: 0;
+}
+
+.filter-button:hover {
+  border-color: var(--button-bg);
+  background-color: var(--bg-secondary);
+  transform: translateY(-1px);
+}
+
+.filter-button:focus {
+  outline: none;
+  border-color: var(--button-bg);
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+.filter-button.active {
+  background-color: var(--button-bg);
+  border-color: var(--button-bg);
+  color: white;
+  font-weight: 600;
+}
+
+.filter-button.active:hover {
+  background-color: var(--button-hover);
+  border-color: var(--button-hover);
+}
+
+.filter-label {
+  font-size: 14px;
+  line-height: 1;
+}
+
+.filter-count {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 12px;
+  min-width: 20px;
+  text-align: center;
+  line-height: 1;
+}
+
+.filter-button:not(.active) .filter-count {
+  background-color: var(--bg-secondary);
+  color: var(--text-secondary);
+}
+
+.filter-summary {
+  display: flex;
+  align-items: center;
+  color: var(--text-secondary);
+  font-size: 14px;
+  padding: 0 4px;
+}
+
+.summary-text {
+  line-height: 1.4;
+}
+
+.summary-current {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.summary-total {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .filter-bar {
+    margin-bottom: 20px;
+  }
+
+  .filter-container {
+    gap: 6px;
+    margin-bottom: 10px;
+  }
+
+  .filter-button {
+    padding: 10px 14px;
+    font-size: 13px;
+  }
+
+  .filter-label {
+    font-size: 13px;
+  }
+
+  .filter-count {
+    font-size: 11px;
+    padding: 2px 5px;
+    min-width: 18px;
+  }
+
+  .filter-summary {
+    font-size: 13px;
+    padding: 0 2px;
+  }
+}
+
+@media (max-width: 480px) {
+  .filter-container {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .filter-button {
+    flex: 1;
+    justify-content: center;
+    padding: 12px 8px;
+    font-size: 12px;
+    min-width: 0;
+  }
+
+  .filter-label {
+    font-size: 12px;
+  }
+
+  .filter-count {
+    font-size: 10px;
+    padding: 1px 4px;
+    min-width: 16px;
+  }
+
+  .filter-summary {
+    text-align: center;
+    font-size: 12px;
+    margin-top: 8px;
+  }
+}
+
+/* Animations */
+@keyframes slideInFromTop {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Accessibility */
+.filter-button:focus-visible {
+  outline: 2px solid var(--button-bg);
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .filter-button {
+    border-width: 3px;
+  }
+
+  .filter-count {
+    border: 1px solid currentColor;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .filter-bar {
+    animation: none;
+  }
+
+  .filter-button {
+    transition: none;
+  }
+
+  .filter-button:hover {
+    transform: none;
+  }
+}

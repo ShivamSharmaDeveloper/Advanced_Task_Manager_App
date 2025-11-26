@@ -1,0 +1,119 @@
+.task-list-container {
+  width: 100%;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  min-height: 100px;
+  transition: all 0.2s ease;
+}
+
+.task-list.dragging-over {
+  background-color: rgba(0, 123, 255, 0.05);
+  border-radius: 8px;
+  padding: 4px;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px;
+  text-align: center;
+  color: var(--text-secondary);
+  min-height: 200px;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.empty-state-icon {
+  margin-bottom: 16px;
+  opacity: 0.5;
+}
+
+.empty-state-icon svg {
+  width: 48px;
+  height: 48px;
+}
+
+.empty-state-text {
+  font-size: 18px;
+  margin: 0;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .empty-state {
+    padding: 32px 16px;
+  }
+
+  .empty-state-icon {
+    margin-bottom: 12px;
+  }
+
+  .empty-state-icon svg {
+    width: 40px;
+    height: 40px;
+  }
+
+  .empty-state-text {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .empty-state {
+    padding: 24px 12px;
+    min-height: 160px;
+  }
+
+  .empty-state-text {
+    font-size: 15px;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Accessibility */
+.task-list:focus {
+  outline: 2px solid var(--button-bg);
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+/* Drag and drop specific styles */
+.rbd-dragging-context {
+  cursor: grabbing;
+}
+
+.rbd-draggable {
+  transition: all 0.2s ease;
+}
+
+.rbd-preview {
+  background: var(--task-bg);
+  border: 2px solid var(--button-bg);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.rbd-placeholder {
+  background: rgba(0, 123, 255, 0.1);
+  border: 2px dashed var(--button-bg);
+  border-radius: 8px;
+  margin: 4px 0;
+}
