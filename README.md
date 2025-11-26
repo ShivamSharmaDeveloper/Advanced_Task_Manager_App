@@ -93,4 +93,167 @@ A modern, feature-rich task management application built with React, featuring d
 
 ```
 src/
-
+ components/           # React components
+    TaskInput.jsx    # Task input form with validation
+    TaskList.jsx     # Task list with drag-and-drop
+    TaskItem.jsx     # Individual task component
+    FilterBar.jsx    # Filter controls
+    ThemeToggle.jsx  # Theme switcher
+ context/             # React Context
+    TaskContext.js   # Global state management
+ hooks/               # Custom hooks
+    useLocalStorage.js # localStorage sync hook
+ App.js              # Main application component
+ App.css             # Global styles and themes
+ index.js            # Application entry point
+```
+
+## Data Storage
+
+All data is stored locally in the browser:
+
+### localStorage Structure
+- **Key**: `taskManagerState`
+- **Contains**:
+  ```javascript
+  {
+    tasks: [
+      {
+        id: "unique_id",
+        title: "Task title",
+        isCompleted: false,
+        createdAt: "2024-01-01T00:00:00.000Z",
+        order: 0
+      }
+    ],
+    filter: "all", // "all" | "completed" | "pending"
+    theme: "light", // "light" | "dark"
+    error: "" // Error messages
+  }
+  ```
+
+### Data Persistence
+- Tasks are saved automatically on any change
+- Theme preference persists across sessions
+- Filter preference is maintained
+- Data survives browser refreshes and restarts
+
+## Performance Features
+
+### Optimizations Implemented
+- **React.memo**: Prevents unnecessary re-renders
+- **useCallback**: Memoizes event handlers
+- **useMemo**: Memoizes derived state and calculations
+- **CSS Transitions**: Hardware-accelerated animations
+- **Debounced Input**: Smooth typing experience
+- **Virtual Scrolling**: Efficient for large task lists
+
+### Accessibility Features
+- **ARIA Labels**: Screen reader support
+- **Keyboard Navigation**: Full keyboard accessibility
+- **Focus Management**: Logical tab order
+- **Semantic HTML**: Proper heading structure
+- **Color Contrast**: WCAG AA compliant
+- **Reduced Motion**: Respects user preferences
+
+## Browser Compatibility
+
+| Browser | Minimum Version | Status |
+|---------|----------------|---------|
+| Chrome | 90+ | Fully Supported |
+| Firefox | 88+ | Fully Supported |
+| Safari | 14+ | Fully Supported |
+| Edge | 90+ | Fully Supported |
+
+## Build and Deployment
+
+### Development
+```bash
+npm start          # Start development server
+npm run build      # Create production build
+npm test           # Run tests (if configured)
+```
+
+### Production Build
+```bash
+npm run build
+```
+This creates an optimized `build` folder ready for deployment.
+
+### Environment Variables
+Create a `.env` file in the root directory (optional):
+```
+# Custom configuration
+REACT_APP_TITLE=My Task Manager
+REACT_APP_VERSION=1.0.0
+```
+
+## Troubleshooting
+
+### Common Issues
+
+1. **Tasks not saving**
+   - Check if localStorage is enabled in your browser
+   - Clear browser cache and try again
+   - Ensure you're not in private/incognito mode
+
+2. **Drag and drop not working**
+   - Update to the latest browser version
+   - Ensure JavaScript is enabled
+   - Check browser console for errors
+
+3. **Theme not persisting**
+   - Clear browser cache
+   - Check localStorage quota limits
+   - Disable any storage-blocking extensions
+
+4. **Performance issues**
+   - Check number of tasks (consider pagination for 1000+ tasks)
+   - Disable browser extensions
+   - Try in an incognito window
+
+### Getting Help
+
+1. Check the browser console for error messages
+2. Verify all dependencies are installed (`npm install`)
+3. Ensure you're using a supported browser version
+4. Create an issue in the project repository
+
+## Contributing
+
+### Development Setup
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
+
+### Code Style
+- Use functional components and hooks
+- Follow React best practices
+- Maintain consistent naming conventions
+- Add appropriate comments for complex logic
+- Ensure accessibility standards are met
+
+## License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+## Changelog
+
+### Version 1.0.0
+- Initial release
+- Core task management functionality
+- Drag-and-drop reordering
+- Dark/light theme support
+- localStorage persistence
+- Responsive design
+- Form validation
+- Performance optimizations
+- Accessibility features
+
+---
+
+**Enjoy managing your tasks! =�**
+
+For questions or feedback, please open an issue in the project repository.
