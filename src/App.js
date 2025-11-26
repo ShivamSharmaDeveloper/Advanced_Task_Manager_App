@@ -30,13 +30,8 @@ function AppContent() {
         <main className="app-main">
           <div className="main-content">
             <TaskInput />
-
-            {filteredTasks.length > 0 && (
-              <>
-                <FilterBar />
-                <TaskList />
-              </>
-            )}
+            <FilterBar />
+            <TaskList />
           </div>
         </main>
 
