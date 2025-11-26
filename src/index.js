@@ -1,12 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import 'react-beautiful-dnd/dist/style.css'; // Import the default styling for react-beautiful-dnd
+// CSS for react-beautiful-dnd is imported via the library itself
 import App from './App';
 
 // Performance monitoring (only in development)
 if (process.env.NODE_ENV === 'development') {
-  // Enable React DevTools Profiler
-  window.__REACT_DEVTOOLS_GLOBAL_HOOK__?.onCommitFiberRoot;
+  // Enable React DevTools Profiler if available
+  if (window.__REACT_DEVTOOLS_GLOBAL_HOOK__) {
+    // React DevTools will automatically profile the app
+  }
 }
 
 // Error boundary to catch and report errors

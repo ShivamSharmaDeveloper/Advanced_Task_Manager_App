@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { DragDropContext } from 'react-beautiful-dnd';
 import { Droppable } from 'react-beautiful-dnd';
 import TaskItem from './TaskItem';
@@ -6,7 +6,7 @@ import { useTaskContext } from '../context/TaskContext';
 import './TaskList.css';
 
 function TaskList() {
-  const { filteredTasks, reorderTasks } = useTaskContext();
+  const { filteredTasks, reorderTasks, filter } = useTaskContext();
 
   const handleDragEnd = useCallback(
     (result) => {
@@ -21,6 +21,20 @@ function TaskList() {
     },
     [reorderTasks]
   );
+
+  const emptyStateMessage = useMemo(() => {
+    if (filteredTasks.length === 0) {
+      switch (filter) {
+        case 'completed':
+          return 'No completed tasks yet.';
+        case 'pending':
+          return 'No pending tasks.';
+        default:
+          return 'No tasks yet. Add one above!';
+      }
+    }
+    return null;
+  }, [filteredTasks.length, filter]);
 
   return (
     <DragDropContext onDragEnd={handleDragEnd}>
@@ -44,17 +58,7 @@ function TaskList() {
               </svg>
             </div>
             <p className="empty-state-text">
-              {(() => {
-                const context = useTaskContext();
-                switch (context.filter) {
-                  case 'completed':
-                    return 'No completed tasks yet.';
-                  case 'pending':
-                    return 'No pending tasks.';
-                  default:
-                    return 'No tasks yet. Add one above!';
-                }
-              })()}
+              {emptyStateMessage}
             </p>
           </div>
         ) : (
